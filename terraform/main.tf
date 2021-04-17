@@ -4,6 +4,12 @@ provider "aws"{
    shared_credentials_file = "~/.aws/credentials"
 }
 
+# Key pair
+resource "aws_key_pair" "pubkey" {
+  key_name   = "my-mac"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwtp2CL9AbTY2l0fv/9UjKt9eC945WKtiJJgx+EONxue/G3mM40n9ShqOLm/nBewvA1xh6RSgeiK47aiX0FwNkXy8Bvg/eRjDvBwkWq5CmlmR+wzS7hAVa1+1CXM7WmaNHCEcsyf8KmAso7hzCAVJxvMl15m7Z4zo+P1EAlTrSG+unX++IJEBp39PIt6uqx05r7hD7uIkj8W3XXCFjtHF9UbP4Ih3gldRO+Q0y789dv6FvF259P/zWr6vYmZRasLMLttDz89LvNceVGT3MD+oiipvfYoeo6Pq6/AqPcIpYccDCYZlG9kAY79gCkPU3cPiy3haTOw0RUfJNBL21drUx mac"
+}
+
 # Konfigurasi security group
 resource "aws_security_group" "sg_webserver" {
   name        = "sg_webserver"
