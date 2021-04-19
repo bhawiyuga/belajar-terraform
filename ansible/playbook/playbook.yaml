@@ -1,0 +1,30 @@
+---
+- name: Ping, update repo, then install apache2
+  hosts: server
+  become: yes
+  tasks:
+    - name: Ping server
+      ping:
+    - name: Update repo
+      apt:
+        update_cache: yes
+    - name: Install apache2
+      apt:
+        name: apache2
+        state: present
+    - name: run apache2 service
+      service: 
+        name: apache2
+        state: started
+    - name: Install mysql-server
+      apt:
+        name: mysql-server
+        state: present
+    - name: run mysql service
+      service: 
+        name: mysql
+        state: started
+    - name: copy custom index.html
+      copy:
+        src: ./files/index.html
+        dest: /var/www/html/index.html

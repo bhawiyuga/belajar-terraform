@@ -42,7 +42,8 @@ resource "aws_security_group" "sg_webserver" {
 }
 
 # Definisikan resource : EC2 instance
-resource "aws_instance" "pub_instance" { 
+resource "aws_instance" "pub_instance" {
+    count = 1
     ami = "ami-01581ffba3821cdf3" 
     instance_type = "t2.micro"
     key_name = "bhawiyuga-m1-mac"
@@ -51,11 +52,6 @@ resource "aws_instance" "pub_instance" {
     ]
 
     tags = {
-        Name = "Public instance"
+        Name = "Public instance ${count.index + 1}"
     }
-}
-
-output "instance_ip_addr" {
-  value       = aws_instance.pub_instance.public_ip
-  description = "The public ip."
 }
